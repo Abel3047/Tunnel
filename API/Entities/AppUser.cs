@@ -5,10 +5,15 @@ namespace API
 {
     public class AppUser : Tunnel
     {
-        public AppUser() 
+        public AppUser():base()
         {
-            
+
         }
+        public AppUser(object thing, string thingsname):base (thing, thingsname)
+        {
+
+        }
+
 
         public DateTime DateofBirth { get; set; }
         private string _UserName;
