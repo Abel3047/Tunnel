@@ -25,6 +25,7 @@ namespace API
 		// this is where the actual thing used to represent the tunnel will be stored. its private for security, 
 		//its inherted by all base classes but needs the SetActual() for it to be useful
 		private object Actual { get; set; } 
+		// Its protected cause only classes that inhert from this class should have access to it
 		protected void SetActual(object thing, string thingsname)
         {
 			this.Actual = thing;
@@ -39,6 +40,7 @@ namespace API
 		}
 
 		public object GetConnection(string tunnelid)=> Connectives[tunnelid]; // returns the tunnel its looking for
+		public object GetAllConnections() => Connectives;// returns all the connections made
 
 	}
 }
