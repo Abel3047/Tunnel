@@ -14,8 +14,12 @@ namespace API
 
         }
 
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+
 
         public DateTime DateofBirth { get; set; }
+        
         private string _UserName;
         public string UserName { get { return _UserName; } set { if (_UserName != null) { _UserName = value; this.name = _UserName; } } }
         public int Id { get; set; } //UserUniqueId used mostly in the database cause they need a primary key
