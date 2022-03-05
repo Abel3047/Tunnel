@@ -3,16 +3,10 @@ using System;
 
 namespace API
 {
-    public class AppUser : Tunnel
+    //I have made appuser inhert from abstractTunnel, cause when it is initialized it will be with Tunnel<T>
+    //This and others like these will have what appUsers are and can do specially 
+    public class AppUser:AbstractTunnel
     {
-        public AppUser():base()
-        {
-
-        }
-        public AppUser(object thing, string thingsname):base (thing, thingsname)
-        {
-
-        }
 
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
