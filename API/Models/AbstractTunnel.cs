@@ -25,7 +25,7 @@ namespace API
 			// Note that tunnel can be an or list of objects
 		}
 		public void GiveTunnelName(string thingsname) => name = thingsname;
-		public object GetConnection(int tunnelid)=> Connectives[tunnelid]; // returns the tunnel its looking for
+		public object GetConnection(int tunnelid)=> Connectives[tunnelid]; // returns the tunnel its looking for by tunnel Id
 		public object GetAllConnections() => Connectives;// returns all the connections made
 
 	}
