@@ -23,9 +23,13 @@ namespace API.Controllers
             {
                 UserName = username,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)),
-                PasswordSalt = hmac.Key
+                PasswordSalt = hmac.Key,
+                //This will be the default avatar/profile id that will borrow its number from the Tunnelid. 
+                avatar=new List<string> { username+ user.TunnelId.Substring(user.TunnelId.Length-5) }
             };
-            await Store(user);// To track and store user in the database. If firebase is to be used one must make the change there, since all controllers are expected to use this method
+
+            // To track and store users in the database. If firebase is to be used one must make the change there, since all controllers globally are expected to use this method
+            await Store(user);
             return user;
 
         }

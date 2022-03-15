@@ -1,0 +1,29 @@
+
+
+So this is where I will be putting all my thoughts as I create this program as a whole.
+They will be mostly Ideas and thought processes as I go along. The biggest issue with this is, I'm not sure the best 
+way to organize this. So we will see as we go along.
+
+
+Features:
+
+-The first thing worth noting its that I intend to have the database be organized with Dbsets. But They will all be the same type; Tunnels.
+This way I will be easy to acess the web like nodes of the database from entry. But research into how the web works might give more fruitful
+architecture.
+
+
+
+
+Ideas:
+
+
+
+Lessons:
+
+
+
+Clues and Leads:
+
+
+
+Introspection:

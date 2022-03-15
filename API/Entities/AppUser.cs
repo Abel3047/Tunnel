@@ -16,17 +16,22 @@ namespace API
         public DateTime DateofBirth { get; set; }
         
         private string _UserName;
-        public string UserName { get { return _UserName; } set { if (_UserName != null) { _UserName = value; this.name = _UserName; } } }
-        public List<int> Id { get; set; } //UserUniqueId isn't used and was considered to be used in the making of the Tunnel id. Please use this instead.
-        //I'm thinking of making this like a profile, or avatar you chose to work with so that you can have different types of connectives all under one profile
+        //Below is set up that way so that it can only change the username once off, then you have to use a method to change it again
+        public string UserName { get { return _UserName; } set { if (_UserName == null) { _UserName = value; this.name = _UserName; } } }
+
+        //I'm thinking of making this like a profile, or avatar you chose to work with so that you can have different types of connectives all under one user.
+        //So the User will have the option of adding new profiles that will suit different themes and such
+        public List<string> avatar { get; set; }
         public int mobileNumber { get; set; }
 
 
         public int numberOfTunnels { get; set; } // number of enteries made
         public int numberofScreens { get; set; } // number of other users they follow
-        public int numberofViewers { get; set; } // number of users they follow
+        public int numberofViewers { get; set; } // number of users they are followed by
 
-
+        //I haven't really put up any logic to use this, and I don't really expect to use it, but I put it there so that if we do need it, then all we have to do is
+        //Change the access modifier or something, so that with certain security or permission/Premium service we can change it
+        private void ChangeUsername(string newUsername) => _UserName = newUsername;
 
     }
 

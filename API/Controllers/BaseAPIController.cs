@@ -24,6 +24,7 @@ namespace API.Controllers
         //I make it a Task return type cause I wanted to remove the awaitable error I keep getting. But I am not sure if Task is really the absolute best moving forward
         protected async Task Store(object thing)
         {
+            // NOTE: Use Dbset with firebase if you do have it on
             _context.Add(thing); // this just tracks the user, it doesnt actually add them. It just makes it possible to
             await _context.SaveChangesAsync(); // this actually saves the Tunnel user object, note that its async cause mvc cant handle multiple call to save on the same db instance
         }

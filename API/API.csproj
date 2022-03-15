@@ -2,9 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Description>The Idea is a social platform thats connected like a web. You 'Tunnel' from profile to picture and any other entity. As a User you will have ability to have different profiles that have different tunnel histories and custom apperance to meet mood and state. Think Pinterest boards but with your life</Description>
+    <Product>Tunnel</Product>
+    <Authors>Abel Tshimbalanga</Authors>
+    <Company />
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdGen" Version="3.0.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>

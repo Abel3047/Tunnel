@@ -1,4 +1,5 @@
 ﻿using API.Entities;
+using IdGen;
 using System;
 using System.Collections.Generic;
 using static API.Models.Enums;
@@ -13,19 +14,21 @@ namespace API
 		{
 			
 		}
-		//Everyone should be aleast able to see the name and id
+		//Everyone should be aleast able to see the name and id. Note that the name is just for the user. It should not be used as an Id
         public string name { get; set; }
-        private Dictionary<int, object> Connectives { get; set; } // will be a list of all connected tunnel ids
+		//I need this to be static, cause I only want one generator for the uniqueUser Id
+		protected static IdGenerator generator = new IdGenerator(0);
+		private Dictionary<string, object> Connectives { get; set; } // will be a list of all connected tunnel ids
 
         public void MakeNewTunnel<T>(string thingsname)
 		{
 			Tunnel<T> tunnelObject = new Tunnel<T>();
 			tunnelObject.GiveTunnelName(thingsname);
 			this.Connectives.Add(tunnelObject.TunnelId, tunnelObject);
-			// Note that tunnel can be an or list of objects
+			// NOTE: that tunnel can be an object or list of objects
 		}
 		public void GiveTunnelName(string thingsname) => name = thingsname;
-		public object GetConnection(int tunnelid)=> Connectives[tunnelid]; // returns the tunnel its looking for by tunnel Id
+		public object GetConnection(string tunnelid)=> Connectives[tunnelid]; // returns the tunnel its looking for by tunnel Id
 		public object GetAllConnections() => Connectives;// returns all the connections made
 
 	}
