@@ -8,6 +8,7 @@ namespace API.Entities
 {
     public class Tunnel<T>:AbstractTunnel
     {
+        // TODO: Remove BernardPixel from the Git History probably by rebaseing the whole master branch
 
         //All Tunnel objects will be initialized using this class. So It will be like Tunnel<Object>();
         //I don't actually intend to store raw classes like AppUser or post or something. All things will be Tunnels with the type attached to it.

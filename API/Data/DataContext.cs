@@ -18,5 +18,24 @@ namespace API.Data
         //from here we can reduce the pool where the search will happen.
         public DbSet<Tunnel<AppUser>> Users { get; set; }
 
+
+        /*
+         * We commenting this out cause we were getting ahead of ourselves
+         * 
+          protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<AppUser>()
+                .HasMany(ur => ur.avatars);
+            // NOTE: There is the key missing. The error we are getting is:
+            // The entity type 'AppUser' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'.
+            // For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+
+        }
+         
+         */
+
+
     }
 }

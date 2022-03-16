@@ -20,12 +20,16 @@ namespace API
 		protected static IdGenerator generator = new IdGenerator(0);
 		private Dictionary<string, object> Connectives { get; set; } // will be a list of all connected tunnel ids
 
-        public void MakeNewTunnel<T>(string thingsname)
+        protected string MakeNewTunnel<T>(string thingsname)
 		{
 			Tunnel<T> tunnelObject = new Tunnel<T>();
 			tunnelObject.GiveTunnelName(thingsname);
+			//This adds the tunnel just made to the connectives of the tunnel that made it
 			this.Connectives.Add(tunnelObject.TunnelId, tunnelObject);
 			// NOTE: that tunnel can be an object or list of objects
+
+			//We need the tunnel id to be stored by the Avatar that makes it
+			return tunnelObject.TunnelId;
 		}
 		public void GiveTunnelName(string thingsname) => name = thingsname;
 		public object GetConnection(string tunnelid)=> Connectives[tunnelid]; // returns the tunnel its looking for by tunnel Id

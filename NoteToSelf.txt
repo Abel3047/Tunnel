@@ -19,6 +19,7 @@ Ideas:
 
 
 Lessons:
+-Methods themselves can take Type arguments ('T'). So that they can do what they would for a specific T
 
 
 
