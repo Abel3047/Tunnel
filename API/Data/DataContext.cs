@@ -19,22 +19,33 @@ namespace API.Data
         public DbSet<Tunnel<AppUser>> Users { get; set; }
 
 
-        /*
-         * We commenting this out cause we were getting ahead of ourselves
-         * 
+        
           protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Tunnel<AppUser>>(entity=>
+            {
+                entity.HasOne<AppUser>(Tu=> Tu.Actual);
+                entity.HasKey(Tu => Tu.TunnelId);
+            });
+            builder.Entity<AppUser>(entity=>
+            {
+                entity.HasNoKey();
+                //entity.HasOne<Tunnel<AppUser>>(); //I don't think this line is necessary
+                //.HasMany(ur => ur.avatars);
+            });
+            // NOTE: There is a missing relational definitionn. The error we are getting is:
+            // Unable to determine the relationship represented by navigation 'Tunnel<AppUser>.Actual' of type 'AppUser'.
+            // Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or
+            // by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
 
-            builder.Entity<AppUser>()
-                .HasMany(ur => ur.avatars);
-            // NOTE: There is the key missing. The error we are getting is:
-            // The entity type 'AppUser' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'.
-            // For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+            // TODO: We have to figure out how to set the dataContext. Searched Changed dataContext dbSet and keep getting. Consider starting the Whole application again
+            //Although I don't want to do that. That's such a Yewo thing to do, I want to know how and why I am getting the results I am getting. Restarting isn't an option
+            //Check here for where we last were in terms of progress
+            //https://stackoverflow.com/questions/55629131/how-to-fix-unable-to-determine-the-relationship-represented-by-navigation-prope 
+
 
         }
-         
-         */
 
 
     }

@@ -20,6 +20,9 @@ Ideas:
 
 Lessons:
 -Methods themselves can take Type arguments ('T'). So that they can do what they would for a specific T
+-partial classes are basically classes that when compiled are essentially combined. So you would use this to break up a class into different
+functionality like, business logic and UI design logic.
+-Business logic is basically controller; How the information is handled to and fro the database and the User interface
 
 
 
