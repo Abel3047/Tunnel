@@ -14,10 +14,6 @@ namespace API
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
 
-        // TODO: We need to set the AppUser Id to the tunnelId cause we need a primary key in the database. Cause the Api end point throws this error
-        //The entity type 'AppUser' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'.
-        //For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
-
 
         public DateTime DateofBirth { get; set; }
 

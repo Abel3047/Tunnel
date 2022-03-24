@@ -23,6 +23,8 @@ Lessons:
 -partial classes are basically classes that when compiled are essentially combined. So you would use this to break up a class into different
 functionality like, business logic and UI design logic.
 -Business logic is basically controller; How the information is handled to and fro the database and the User interface
+-To remove a file from the git changes(adding it to the git ignore) you should use the command git rm --cached <file>. This 'deletes' from the index but 
+keeps the file. If you don't put the --cached tag however, it will actually delete the file from the folder
 
 
 

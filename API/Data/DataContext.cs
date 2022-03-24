@@ -20,7 +20,7 @@ namespace API.Data
 
 
         
-          protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.Entity<Tunnel<AppUser>>(entity=>
@@ -39,10 +39,9 @@ namespace API.Data
             // Either manually configure the relationship, or ignore this property using the '[NotMapped]' attribute or
             // by using 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
 
-            // TODO: We have to figure out how to set the dataContext. Searched Changed dataContext dbSet and keep getting. Consider starting the Whole application again
-            //Although I don't want to do that. That's such a Yewo thing to do, I want to know how and why I am getting the results I am getting. Restarting isn't an option
-            //Check here for where we last were in terms of progress
-            //https://stackoverflow.com/questions/55629131/how-to-fix-unable-to-determine-the-relationship-represented-by-navigation-prope 
+            // TODO: We have to figure out how to set the dataContext. Searched Changed dataContext dbSet and keep getting. 
+            // Here we are in terms of progress https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli#prerequisites
+            // Evidently we are still getting that same relational error within Tunnel<AppUser>.Actual
 
 
         }
