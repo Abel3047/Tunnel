@@ -25,15 +25,18 @@ namespace API.Data
 
             builder.Entity<AppUser>(entity =>
             {
-                //I put this here so that the key from Tunnel gets propagated into Actual and hopefully solves what I am trying to achieve
-                //entity.OwnsMany(user => user.avatars); 
                 entity.HasKey(user => user.TunnelId);
-                //entity.HasMany(user => user.avatars);
+                entity.HasMany(user => user.avatars);
+                // NOTE: We don't use OwnsMany() here cause it appears it already exists by default. Consider revising but its not that important 
             });
-            //builder.Entity<Avatar>(entity =>
-            //{
-            //    entity.HasMany(Av => Av.ConnectiveAdresses);
-            //});
+            builder.Entity<Avatar>(entity =>
+            {
+                entity.HasMany(Av => Av.AvatarConnectiveAddress);
+            });
+            builder.Entity<ConnectiveAddress>(entity =>
+            {
+                entity.HasKey(con => con.ConnectiveId);
+            });
 
         }
 

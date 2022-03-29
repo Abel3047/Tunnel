@@ -37,14 +37,15 @@ namespace API.Entities
 
         //I need this to be static, cause I only want one generator for the uniqueUser Id
         protected static IdGenerator generator = new IdGenerator(0);
-        //This is private cause a method exists that accesses this. There is no reason why you should access it directly
+        // NOTE: This is private cause a method exists that accesses this. There is no reason why you should access it directly SO DON'T CHANGE IT
         private Dictionary<string, object> Connectives { get; set; } // will be a list of all connected tunnel ids
         #endregion
 
         #region Methods
 
         //I expect Tunnels to be made differently for different tunnels
-        protected virtual string MakeNewTunnel<TTunnel>(string thingsname) where TTunnel:Tunnel //I am hoping I can have primitive types wrapped under Tunnel as well
+        //I use protected internal cause I want to be able to call it in other classes, but I can't have all assemblies accessing it
+        protected internal virtual string MakeNewTunnel<TTunnel>(string thingsname) where TTunnel:Tunnel //I am hoping I can have primitive types wrapped under Tunnel as well
         {
             // NOTE: This only works with parameterless constructors, we will have to make changes if you consider changing
             Tunnel tunnelObject = (Tunnel)Activator.CreateInstance(typeof(TTunnel));

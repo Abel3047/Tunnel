@@ -32,14 +32,16 @@ namespace API
 
         //I'm thinking of making this like a profile, or avatar you chose to work with so that you can have different types of connectives all under one user.
         //So the User will have the option of adding new profiles that will suit different themes and such
-        // TODO: We have to figure out how to map Avatars
-        //public List<Avatar> avatars { get; set; }
+        public ICollection<Avatar> avatars { get; set; }
 
         public int mobileNumber { get; set; }
 
         #endregion
 
         #region Methods
+
+        //Here will be where all the methods that an Avatar will be expected to do. They will be mostly default things expected for system maintainence and all the 
+        //busy work. I want to keep Avatar only for the UX and feel for the user, so AppUser will be for us developers alone
 
         protected override string MakeTunnelId(string UniqueNumber) => ((int)TunnelTypes.AppUser).ToString() + "0" + generator.CreateId().ToString() + "3" + UniqueNumber;
 
