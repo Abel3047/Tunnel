@@ -1,22 +1,27 @@
 ﻿using API.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using static API.Models.Enums;
 
 namespace API
 {
-    //I have made appuser inhert from abstractTunnel, cause when it is initialized it will be with Tunnel<T>
     //This and others like these will have what appUsers are and can do specially 
-    public class AppUser:AbstractTunnel
+
+    //[Table("Users")] I put this attribute hoping that it would be explicit enough for the computer. I'm leaving it here in case I need it at somepoint or 
+    //place anyways
+    public class AppUser:Tunnel
     {
+        public AppUser():base()
+        {
+
+        }
+
         #region Properties
 
         //public int Id { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
-
-        // TODO: We need to set the AppUser Id to the tunnelId cause we need a primary key in the database. Cause the Api end point throws this error
-        //The entity type 'AppUser' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'.
-        //For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
 
 
         public DateTime DateofBirth { get; set; }
@@ -27,7 +32,7 @@ namespace API
 
         //I'm thinking of making this like a profile, or avatar you chose to work with so that you can have different types of connectives all under one user.
         //So the User will have the option of adding new profiles that will suit different themes and such
-        //public List<Avatar> avatars { get; set; }
+        public ICollection<Avatar> avatars { get; set; }
 
         public int mobileNumber { get; set; }
 
@@ -35,6 +40,10 @@ namespace API
 
         #region Methods
 
+        //Here will be where all the methods that an Avatar will be expected to do. They will be mostly default things expected for system maintainence and all the 
+        //busy work. I want to keep Avatar only for the UX and feel for the user, so AppUser will be for us developers alone
+
+        protected override string MakeTunnelId(string UniqueNumber) => ((int)TunnelTypes.AppUser).ToString() + "0" + generator.CreateId().ToString() + "3" + UniqueNumber;
 
         //I haven't really put up any logic to use this, and I don't really expect to use it, but I put it there so that if we do need it, then all we have to do is
         //Change the access modifier or something, so that with certain security or permission/Premium service we can change it
@@ -44,7 +53,6 @@ namespace API
         // public method that returns the name easy. If you really want there to be conditions on the the access of the username, then edit the get block within the Username
 
         #endregion
-
 
     }
 

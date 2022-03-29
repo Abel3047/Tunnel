@@ -16,25 +16,29 @@ namespace API.Data
         //I am assuming this is how we set certain sets to search from in a database so you don't have to look through all entries for a query result.
         //This means we don't really need to worry about using Tunnelid to search for everything cause as long as we set the Dbset we are trying to chose
         //from here we can reduce the pool where the search will happen.
-        public DbSet<Tunnel<AppUser>> Users { get; set; }
-
-
-        /*
-         * We commenting this out cause we were getting ahead of ourselves
-         * 
-          protected override void OnModelCreating(ModelBuilder builder)
+        public DbSet<AppUser> Users { get; set; }
+        
+        protected override void OnModelCreating(ModelBuilder builder)
         {
+            //Neccesarry for all the things it was supposed to do anyways, we don't want to rewrite and override everything here now do we
             base.OnModelCreating(builder);
 
-            builder.Entity<AppUser>()
-                .HasMany(ur => ur.avatars);
-            // NOTE: There is the key missing. The error we are getting is:
-            // The entity type 'AppUser' requires a primary key to be defined. If you intended to use a keyless entity type, call 'HasNoKey' in 'OnModelCreating'.
-            // For more information on keyless entity types, see https://go.microsoft.com/fwlink/?linkid=2141943.
+            builder.Entity<AppUser>(entity =>
+            {
+                entity.HasKey(user => user.TunnelId);
+                entity.HasMany(user => user.avatars);
+                // NOTE: We don't use OwnsMany() here cause it appears it already exists by default. Consider revising but its not that important 
+            });
+            builder.Entity<Avatar>(entity =>
+            {
+                entity.HasMany(Av => Av.AvatarConnectiveAddress);
+            });
+            builder.Entity<ConnectiveAddress>(entity =>
+            {
+                entity.HasKey(con => con.ConnectiveId);
+            });
 
         }
-         
-         */
 
 
     }

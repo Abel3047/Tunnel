@@ -9,26 +9,25 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211114154312_InitialCreate")]
+    [Migration("20220328091249_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.15");
 
             modelBuilder.Entity("API.AppUser", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("DateofBirth")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TunnelId")
-                        .HasColumnType("TEXT");
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT");
@@ -39,16 +38,18 @@ namespace API.Data.Migrations
                     b.Property<string>("name")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("numberOfTunnels")
-                        .HasColumnType("INTEGER");
+                    b.ToTable("AppUser");
+                });
 
-                    b.Property<int>("numberofScreens")
-                        .HasColumnType("INTEGER");
+            modelBuilder.Entity("API.Entities.Tunnel<API.AppUser>", b =>
+                {
+                    b.Property<string>("TunnelId")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("numberofViewers")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("name")
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("TunnelId");
 
                     b.ToTable("Users");
                 });
