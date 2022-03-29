@@ -14,12 +14,12 @@ namespace API.Controllers
     {
         public AccountController(DataContext context) : base(context) { }
 
-        [HttpPost("register")]
-        public async Task<ActionResult<Tunnel<AppUser>>> Register(string username, string password)
+       [HttpPost("register")]
+        public async Task<ActionResult<AppUser>> Register(string username, string password)
         {
             using var hmac = new HMACSHA512(); //using basically makes sure that once something is used it is disposed of properly. But it has to inhert from the iDispose interface
-            Tunnel<AppUser> user = new Tunnel<AppUser>();
-            user.Actual= new AppUser
+            AppUser user = new AppUser();
+            user = new AppUser
             {
                 UserName = username,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password)),

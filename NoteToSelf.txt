@@ -25,7 +25,14 @@ functionality like, business logic and UI design logic.
 -Business logic is basically controller; How the information is handled to and fro the database and the User interface
 -To remove a file from the git changes(adding it to the git ignore) you should use the command git rm --cached <file>. This 'deletes' from the index but 
 keeps the file. If you don't put the --cached tag however, it will actually delete the file from the folder
+-When using Generic Type parameters you have to use the naming convection 'TType'. Eg TAppUser or TWeapon. This is so you can be more descriptive about what kind of types 
+are going in.
+-A Fluent interface is an API that basically chains methods one after another, using the result of each method as the context or entity that will fire off the next one.
 
+-EF and EF Core do not have the functionality to have classes with type parameters to be navigated. And there doesn't seem to be an explicit way to set the navigation propterty
+
+So what I am planning to do is to scratch the AbstractTunnel and just have Tunnel. Everything will inherit from this and it will be important for them to have their constructors
+derive from the superclass constructor so that it can creat the TunnelId and default name for each of them.
 
 
 Clues and Leads:
